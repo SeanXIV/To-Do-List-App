@@ -20,6 +20,11 @@ const taskSchema = new mongoose.Schema({
 
 const Task = mongoose.model('Task', taskSchema);
 
+// Test endpoint
+app.get('/', (req, res) => {
+  res.send('Backend is working!');
+});
+
 app.get('/api/tasks', async (req, res) => {
   const tasks = await Task.find();
   res.json(tasks);
