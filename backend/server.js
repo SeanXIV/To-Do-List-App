@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const app = express();
 app.use(cors({
-  origin: 'http://localhost:3000', // Allow your frontend URL
+  origin: '*', // Allow your frontend URL
 }));
 app.use(bodyParser.json());
 
