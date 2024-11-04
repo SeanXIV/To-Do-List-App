@@ -5,9 +5,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 
 const app = express();
-app.use(cors({
-  origin: '*', // Allow your frontend URL
-}));
+app.use(cors());
 app.use(bodyParser.json());
 
 mongoose.connect(process.env.MONGO_URI, {
