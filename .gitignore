@@ -5,6 +5,8 @@
 /frontend/node_modules
 /backend/.env
 /frontend/.env
+/frontend/.env.development
+/frontend/.env.production
 /.pnp
 .pnp.js
 
@@ -12,7 +14,7 @@
 /coverage
 
 # production
-/build
+/frontend/build
 
 # misc
 .DS_Store
