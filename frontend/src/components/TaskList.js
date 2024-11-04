@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { FaTrash } from 'react-icons/fa';  // Import trash icon
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
@@ -32,23 +33,27 @@ const TaskList = () => {
 
   return (
     <div>
-      <h1>To-Do List</h1>
       <input
         type="text"
         value={newTask}
         onChange={(e) => setNewTask(e.target.value)}
+        placeholder="Add a new task..."
       />
       <button onClick={addTask}>Add Task</button>
       <ul>
         {tasks.map(task => (
           <li key={task._id}>
+            <input
+              type="checkbox"
+              checked={task.completed}
+              onChange={() => toggleTask(task._id, task.completed)}
+            />
             <span style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
               {task.name}
             </span>
-            <button onClick={() => toggleTask(task._id, task.completed)}>
-              {task.completed ? 'Undo' : 'Complete'}
+            <button onClick={() => deleteTask(task._id)}>
+              <FaTrash />
             </button>
-            <button onClick={() => deleteTask(task._id)}>Delete</button>
           </li>
         ))}
       </ul>

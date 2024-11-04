@@ -1,0 +1,90 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+  }
+  
+  .container {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 400px;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #fff;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+  }
+  
+  li input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  li span {
+    flex-grow: 1;
+    margin-right: 10px;
+  }
+  
+  li button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+  }
+  
+  li button:hover {
+    color: #c82333;
+  }
+  
+  li button svg {
+    width: 20px;
+    height: 20px;
+  }
+  

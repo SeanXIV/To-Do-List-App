@@ -1,12 +1,14 @@
 import '../styles/App.css';
 import TaskList from './TaskList';
+import '../styles/TaskList.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
+    <div className="container">
+      <h1>To-Do List</h1>
       <TaskList />
     </div>
   );
-}
+};
 
 export default App;
