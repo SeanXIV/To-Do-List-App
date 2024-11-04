@@ -5,8 +5,20 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 
 const app = express();
-app.options('*', cors());
-app.use(cors());
+
+const corsOptions = { 
+  origin: 'https://to-do-list-app-frontend-tau.vercel.app', 
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', 
+  preflightContinue: false, 
+  optionsSuccessStatus: 204 
+}; 
+
+app.use(cors(corsOptions));
+
+app.use(cors({ 
+  origin: '*', 
+}));
+
 app.use(bodyParser.json());
 
 mongoose.connect(process.env.MONGO_URI, {
