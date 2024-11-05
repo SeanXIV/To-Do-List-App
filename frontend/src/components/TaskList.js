@@ -8,9 +8,14 @@ const TaskList = () => {
   const [errorMessage, setErrorMessage] = useState(''); // State for error message
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/api/tasks`).then((response) => {
-      setTasks(response.data);
-    });
+    axios.get(`${process.env.REACT_APP_API_URL}/api/tasks`)
+      .then((response) => {
+        setTasks(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching tasks:', error);
+        setErrorMessage('Failed to load tasks. Please try again later.');
+      });
   }, []);
 
   const addTask = () => {
@@ -18,23 +23,38 @@ const TaskList = () => {
       setErrorMessage('Task cannot be empty.');  // Set error message
       return;
     }
-    axios.post(`${process.env.REACT_APP_API_URL}/api/tasks`, { name: newTask, completed: false }).then((response) => {
-      setTasks([...tasks, response.data]);
-      setNewTask('');
-      setErrorMessage('');  // Clear error message
-    });
+    axios.post(`${process.env.REACT_APP_API_URL}/api/tasks`, { name: newTask, completed: false })
+      .then((response) => {
+        setTasks([...tasks, response.data]);
+        setNewTask('');
+        setErrorMessage('');  // Clear error message
+      })
+      .catch((error) => {
+        console.error('Error adding task:', error);
+        setErrorMessage('Failed to add task. Please try again later.');
+      });
   };
 
   const deleteTask = (id) => {
-    axios.delete(`${process.env.REACT_APP_API_URL}/api/tasks/${id}`).then(() => {
-      setTasks(tasks.filter(task => task._id !== id));
-    });
+    axios.delete(`${process.env.REACT_APP_API_URL}/api/tasks/${id}`)
+      .then(() => {
+        setTasks(tasks.filter(task => task._id !== id));
+      })
+      .catch((error) => {
+        console.error('Error deleting task:', error);
+        setErrorMessage('Failed to delete task. Please try again later.');
+      });
   };
 
   const toggleTask = (id, completed) => {
-    axios.put(`${process.env.REACT_APP_API_URL}/api/tasks/${id}`, { completed: !completed }).then((response) => {
-      setTasks(tasks.map(task => task._id === id ? response.data : task));
-    });
+    axios.put(`${process.env.REACT_APP_API_URL}/api/tasks/${id}`, { completed: !completed })
+      .then((response) => {
+        setTasks(tasks.map(task => task._id === id ? response.data : task));
+      })
+      .catch((error) => {
+        console.error('Error updating task:', error);
+        setErrorMessage('Failed to update task. Please try again later.');
+      });
   };
 
   return (
