@@ -39,24 +39,44 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/tasks', async (req, res) => {
-  const tasks = await Task.find();
-  res.json(tasks);
+  try {
+    const tasks = await Task.find();
+    res.json(tasks);
+  } catch (error) {
+    console.error('Error fetching tasks:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
 });
 
 app.post('/api/tasks', async (req, res) => {
-  const task = new Task(req.body);
-  await task.save();
-  res.json(task);
+  try {
+    const task = new Task(req.body);
+    await task.save();
+    res.json(task);
+  } catch (error) {
+    console.error('Error creating task:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
 });
 
 app.put('/api/tasks/:id', async (req, res) => {
-  const task = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true });
-  res.json(task);
+  try {
+    const task = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.json(task);
+  } catch (error) {
+    console.error('Error updating task:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
 });
 
 app.delete('/api/tasks/:id', async (req, res) => {
-  await Task.findByIdAndDelete(req.params.id);
-  res.json({ message: 'Task deleted' });
+  try {
+    await Task.findByIdAndDelete(req.params.id);
+    res.json({ message: 'Task deleted' });
+  } catch (error) {
+    console.error('Error deleting task:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
 });
 
 const PORT = process.env.PORT || 5000;
