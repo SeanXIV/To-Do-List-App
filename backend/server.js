@@ -7,7 +7,7 @@ require('dotenv').config();
 const app = express();
 
 const corsOptions = { 
-  origin: 'https://to-do-list-app-frontend-tau.vercel.app', 
+  origin: '*', 
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', 
   preflightContinue: false, 
   optionsSuccessStatus: 204 
