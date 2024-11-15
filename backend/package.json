@@ -2,9 +2,9 @@
   "name": "backend",
   "version": "1.0.0",
   "scripts": {
-    "build": "echo 'Building...'",
-    "vercel-build": "npm run build && echo 'Vercel build...'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm install --silent && echo 'Building... > /dev/null'",
+    "vercel-build": "npm install --silent && echo 'Vercel build... > /dev/null'",
+    "test": "echo 'Error: no test specified' && exit 1"
   },
   "dependencies": {
     "backend": "file:",
