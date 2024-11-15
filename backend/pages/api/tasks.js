@@ -5,11 +5,19 @@ const taskSchema = new mongoose.Schema({
   completed: Boolean,
 });
 
-const Task = mongoose.model('Task', taskSchema);
+const Task = mongoose.models.Task || mongoose.model('Task', taskSchema);
 
-mongoose.connect(process.env.MONGO_URI);
+const connectDb = async () => {
+  if (mongoose.connection.readyState >= 1) return;
+  return mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+};
 
 export default async function handler(req, res) {
+  await connectDb();
+
   if (req.method === 'GET') {
     try {
       const tasks = await Task.find();
