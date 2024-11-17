@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Navigate to backend directory
+        run: cd backend
       - name: Install dependencies and build
-        run: |
-          cd backend
-          npm install
-          npm run build
+        run: npm install && npm run build
+        working-directory: ./backend
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
@@ -23,3 +23,4 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_TO_DO_LIST_EC12D }}
           channelId: live
           projectId: to-do-list-ec12d
+          entryPoint: ./backend
