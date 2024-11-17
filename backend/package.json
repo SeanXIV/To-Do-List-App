@@ -2,7 +2,8 @@
   "name": "backend",
   "version": "1.0.0",
   "scripts": {
-    "build": "npm install --silent && echo 'Building... > /dev/null'",
+    "build": "npm install --quiet && echo 'Building...'",
+    "vercel-build": "npm install --quiet && echo 'Vercel build...'",
     "test": "echo 'Error: no test specified' && exit 1"
   },
   "dependencies": {
