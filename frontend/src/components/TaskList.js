@@ -8,7 +8,7 @@ const TaskList = () => {
   const [errorMessage, setErrorMessage] = useState(''); // State for error message
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/api/tasks`)
+    axios.get(`${process.env.REACT_APP_API_URL}/tasks`)
       .then((response) => {
         setTasks(response.data);
       })
@@ -23,7 +23,7 @@ const TaskList = () => {
       setErrorMessage('Task cannot be empty.');  // Set error message
       return;
     }
-    axios.post(`${process.env.REACT_APP_API_URL}/api/tasks`, { name: newTask, completed: false })
+    axios.post(`${process.env.REACT_APP_API_URL}/tasks`, { name: newTask, completed: false })
       .then((response) => {
         setTasks([...tasks, response.data]);
         setNewTask('');
@@ -36,7 +36,7 @@ const TaskList = () => {
   };
 
   const deleteTask = (id) => {
-    axios.delete(`${process.env.REACT_APP_API_URL}/api/tasks/${id}`)
+    axios.delete(`${process.env.REACT_APP_API_URL}/tasks/${id}`)
       .then(() => {
         setTasks(tasks.filter(task => task._id !== id));
       })
@@ -47,7 +47,7 @@ const TaskList = () => {
   };
 
   const toggleTask = (id, completed) => {
-    axios.put(`${process.env.REACT_APP_API_URL}/api/tasks/${id}`, { completed: !completed })
+    axios.put(`${process.env.REACT_APP_API_URL}/tasks/${id}`, { completed: !completed })
       .then((response) => {
         setTasks(tasks.map(task => task._id === id ? response.data : task));
       })
